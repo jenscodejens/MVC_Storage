@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using MVC_Storage.Models;
+using MVC_Storage.Models.ViewModels;
 
 namespace MVC_Storage.Data
 {
@@ -14,6 +15,7 @@ namespace MVC_Storage.Data
         {
         }
 
-        public DbSet<MVC_Storage.Models.Product> Product { get; set; } = default!;
+        public DbSet<Product> Product { get; set; } = default!;
+        public DbSet<ProductIndexViewModel> ProductIndexViewModel { get; set; } = default!;
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using MVC_Storage.Data;
 using MVC_Storage.Models;
+using MVC_Storage.Models.ViewModels;
 
 namespace MVC_Storage.Controllers
 {
@@ -16,15 +17,23 @@ namespace MVC_Storage.Controllers
 
         public ProductsController(MVC_StorageContext context) => _context = context;
 
-        //public ProductsController(MVC_StorageContext context)
+        // GET: Products
+        //public async Task<IActionResult> Index()
         //{
-        //    _context = context;
+        //    return View(await _context.Product.ToListAsync());
         //}
 
-        // GET: Products
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Product.ToListAsync());
+            var model = _context.Product.Select(e => new ProductIndexViewModel
+            {
+                Id = e.Id,
+                Name = e.Name,
+                Price = e.Price,
+                Count = e.Count,
+                InventoryValue = e.Count * e.Price
+            });
+            return View("Index_ProductIndexViewModel", await model.ToListAsync());
         }
 
         // GET: Products/Details/5
