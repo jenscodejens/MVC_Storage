@@ -18,12 +18,12 @@ namespace MVC_Storage.Controllers
         public ProductsController(MVC_StorageContext context) => _context = context;
 
         // GET: Products
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Product.ToListAsync());
-        //}
-
         public async Task<IActionResult> Index()
+        {
+            return View(await _context.Product.ToListAsync());
+        }
+
+        public async Task<IActionResult> Inventory()
         {
             var model = _context.Product.Select(e => new ProductIndexViewModel
             {
@@ -65,15 +65,9 @@ namespace MVC_Storage.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Price,Count,Name,Category,Shelf,Description,Orderdate")] Product product)
+        public async Task<IActionResult> AddProduct()
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(product);
+            return View("AddProduct");
         }
 
         // GET: Products/Edit/5
