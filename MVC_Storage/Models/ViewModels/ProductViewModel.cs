@@ -1,6 +1,6 @@
 ﻿namespace MVC_Storage.Models.ViewModels
 {
-    public class ProductIndexViewModel
+    public class ProductViewModel
     {
         public int Id { get; set; }
         public int Price { get; set; }

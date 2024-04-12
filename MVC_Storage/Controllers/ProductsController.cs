@@ -25,7 +25,7 @@ namespace MVC_Storage.Controllers
 
         public async Task<IActionResult> Inventory()
         {
-            var model = _context.Product.Select(e => new ProductIndexViewModel
+            var model = _context.Product.Select(e => new ProductViewModel
             {
                 Id = e.Id,
                 Name = e.Name,
@@ -33,7 +33,26 @@ namespace MVC_Storage.Controllers
                 Count = e.Count,
                 InventoryValue = e.Count * e.Price
             });
-            return View("Index_ProductIndexViewModel", await model.ToListAsync());
+            return View("Index_ProductViewModel", await model.ToListAsync());
+        }
+
+        // GET: Products/Details/5
+        public async Task<IActionResult> DetailsInventory(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var product = await _context.Product
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            //return View(product);
+            return View("Details_ProductViewModel");
         }
 
         // GET: Products/Details/5

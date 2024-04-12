@@ -1,7 +1,7 @@
-﻿@model IEnumerable<MVC_Storage.Models.ViewModels.ProductIndexViewModel>
+﻿@model IEnumerable<MVC_Storage.Models.ViewModels.ProductViewModel>
 
 @{
-    ViewData["Title"] = "Index_ProductIndexViewModel";
+    ViewData["Title"] = "Index_ProductViewModel";
 }
 
 <h2>Current status</h2>
@@ -41,7 +41,7 @@
                 @Html.DisplayFor(modelItem => item.InventoryValue) SEK
             </td>
             <td>
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                <a asp-action="DetailsInventory" asp-route-id="@item.Id">Details</a>
             </td>
         </tr>
 }

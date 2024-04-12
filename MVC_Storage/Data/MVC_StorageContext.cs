@@ -16,6 +16,6 @@ namespace MVC_Storage.Data
         }
 
         public DbSet<Product> Product { get; set; } = default!;
-        public DbSet<ProductIndexViewModel> ProductIndexViewModel { get; set; } = default!;
+        public DbSet<ProductViewModel> ProductIndexViewModel { get; set; } = default!;
     }
 }
